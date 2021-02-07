@@ -20,11 +20,22 @@ RUN apt-get update \
  && apt-get -y clean \
  && rm -rf /var/lib/apt/lists/*
 
-# copy config
+# make dir for prometheus
+RUN mkdir /var/run/prometheus \
+  && chown -R prometheus /var/run/prometheus
 
-
+# copy config and init service script
+COPY init.sh /root/
+COPY prometheus.yml /etc/prometheus/
+COPY rules.yml /etc/prometheus/
+COPY alertmanager.yml /etc/prometheus/
 
 # expose ports
+# prometheus
 EXPOSE 9090
-EXPOSE 3000
+# alert manager
 EXPOSE 9093
+# grafana
+EXPOSE 3000
+
+CMD bash /root/init.sh

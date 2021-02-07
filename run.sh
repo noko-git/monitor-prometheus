@@ -9,7 +9,7 @@ function usage()
 
 # main
 docker run --name monitor_prometheus \
-  -p 9090:19090 \
-  -p 3000:13000 \
-  -p 9093:19093 \
+  -p 19090:9090 \
+  -p 19093:9093 \
+  -p 13000:3000 \
   -it monitor_prometheus
