@@ -1,0 +1,12 @@
+groups:
+  - name: node
+    rules:
+
+    - alert: node up == 0
+      expr: up{job="node"} == 0
+      for: 60s
+      labels:
+        severity: error
+      annotations:
+        summary: "[{{ $labels.severity }}]node up == 0. node: {{ $labels.instance }} current value: {{$value}}"
+        description: ""
