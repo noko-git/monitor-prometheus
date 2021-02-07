@@ -6,10 +6,6 @@ RUN apt-get update \
     gnupg2 \
     curl \
     software-properties-common
-#    libcurl3-gnutls \
-#    curl \
-#    gnupg2 \
-#    ca-certificates
 
 RUN curl -k https://packages.grafana.com/gpg.key | apt-key add - \
   && add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
@@ -23,3 +19,12 @@ RUN apt-get update \
     grafana \
  && apt-get -y clean \
  && rm -rf /var/lib/apt/lists/*
+
+# copy config
+
+
+
+# expose ports
+EXPOSE 9090
+EXPOSE 3000
+EXPOSE 9093
